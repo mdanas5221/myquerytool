@@ -1,0 +1,4 @@
+node_modules/
+seeds/
+.env
+index.html

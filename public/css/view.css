@@ -1,0 +1,594 @@
+/* ==========================================================================
+   TOOL DETAIL PAGE STYLES (view.ejs Specific)
+   ========================================================================== */
+
+.tool-detail-page {
+  padding-top: 32px;
+  padding-bottom: 80px;
+  background-color: var(--color-light-bg);
+  min-height: calc(100vh - 72px);
+}
+
+.tool-detail-container {
+  max-width: 1040px;
+}
+
+/* --------------------------------------------------
+   Main Detail Card
+   -------------------------------------------------- */
+.tool-detail-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* Header Section */
+.detail-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.detail-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.detail-logo-box {
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #ffffff;
+}
+
+.detail-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.detail-tool-name {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-dark-text);
+  line-height: 1.15;
+}
+
+.detail-badges-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Badges */
+.detail-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.detail-badge-category {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.detail-badge-pricing {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+/* Quick Specs */
+.detail-quick-specs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 0.8125rem;
+  color: var(--color-secondary-text);
+  line-height: 1.4;
+}
+
+.spec-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.spec-label {
+  color: var(--color-muted-text);
+}
+
+.spec-val {
+  font-weight: 600;
+  color: var(--color-dark-text);
+}
+
+.spec-verified {
+  color: #059669;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.spec-verified .spec-val {
+  color: #059669;
+}
+
+.spec-dot {
+  color: #cbd5e1;
+  user-select: none;
+  font-size: 0.875rem;
+}
+
+/* Actions */
+.detail-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.detail-visit-btn {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.detail-pricing-btn {
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.detail-divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 0;
+}
+
+/* --------------------------------------------------
+   General Detail Sections
+   -------------------------------------------------- */
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-dark-text);
+}
+
+/* Tags Section */
+.detail-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-tag-pill {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-secondary-text);
+  background-color: var(--color-light-bg);
+  border: 1px solid var(--color-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+}
+
+.detail-tag-pill:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-border-hover);
+  color: var(--color-dark-text);
+}
+
+/* About Section */
+.detail-about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-paragraph {
+  font-size: 1rem;
+  color: var(--color-secondary-text);
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------
+   Community Ratings Section
+   -------------------------------------------------- */
+.ratings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.rating-item-card {
+  background-color: var(--color-light-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
+
+.rating-item-card:hover {
+  border-color: var(--color-border-hover);
+  background-color: #f1f5f9;
+}
+
+.rating-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.platform-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-dark-text);
+}
+
+.rating-score {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-dark-text);
+}
+
+.rating-scale {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted-text);
+}
+
+.rating-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.review-count {
+  color: var(--color-secondary-text);
+}
+
+.source-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.source-link:hover {
+  color: var(--color-primary-hover);
+}
+
+/* --------------------------------------------------
+   Pros and Cons Grid
+   -------------------------------------------------- */
+.pros-cons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.pros-column,
+.cons-column {
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pros-column {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.cons-column {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.column-header-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.pros-icon {
+  background-color: #22c55e;
+  color: var(--color-white);
+}
+
+.cons-icon {
+  background-color: #ef4444;
+  color: var(--color-white);
+}
+
+.column-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-dark-text);
+}
+
+.pros-cons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pros-cons-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.item-bullet {
+  font-weight: 700;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.pros-bullet {
+  color: #16a34a;
+}
+
+.cons-bullet {
+  color: #dc2626;
+}
+
+.item-text-group {
+  display: inline;
+}
+
+.item-title {
+  color: var(--color-dark-text);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.item-desc {
+  color: var(--color-secondary-text);
+}
+
+/* --------------------------------------------------
+   Testing & Audit Footer
+   -------------------------------------------------- */
+.detail-testing-section {
+  background-color: var(--color-light-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+}
+
+.testing-badge-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.testing-badge-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.testing-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testing-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.testing-label {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-dark-text);
+}
+
+.testing-date {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.testing-notes {
+  font-size: 0.875rem;
+  color: var(--color-secondary-text);
+  line-height: 1.5;
+}
+
+/* ==================================================
+   RESPONSIVE ADJUSTMENTS FOR VIEW PAGE
+   ================================================== */
+@media (max-width: 992px) {
+  .tool-detail-card {
+    padding: 28px 24px;
+    gap: 28px;
+  }
+
+  .detail-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-header-actions {
+    width: 100%;
+  }
+
+  .detail-visit-btn,
+  .detail-pricing-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-card-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .detail-header-left {
+    align-items: center;
+    gap: 16px;
+  }
+
+  .detail-logo-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+
+  .detail-tool-name {
+    font-size: 1.625rem;
+  }
+
+  .detail-header-actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .detail-visit-btn,
+  .detail-pricing-btn {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .tool-detail-page {
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+
+  .tool-detail-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  .detail-header-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-header-actions {
+    flex-direction: column;
+  }
+
+  .detail-visit-btn,
+  .detail-pricing-btn {
+    width: 100%;
+  }
+
+  .ratings-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .pros-cons-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-header-left {
+    gap: 12px;
+  }
+
+  .detail-logo-box {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+  }
+
+  .detail-tool-name {
+    font-size: 1.4rem;
+  }
+
+  .detail-badge {
+    font-size: 0.6875rem;
+    padding: 3px 8px;
+  }
+
+  .detail-quick-specs {
+    font-size: 0.75rem;
+    gap: 6px 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .pros-cons-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

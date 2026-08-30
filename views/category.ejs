@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+  <%- include('./partials/nav.ejs') %>
+
+  <main class="all-tools-page">
+    <!-- 1. Header & Filter Bar Section -->
+    <section class="tools-page-header">
+      <div class="container">
+        <!-- Title & Subtitle -->
+        <div class="tools-header-content">
+          <h1 class="tools-page-heading">Explore All <%= allTools[0].category %> Tools</h1>
+          <p class="tools-page-subheading">
+            Browse through our curated collection of modern AI tools for developers, creators, and professionals.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Tools Grid Section -->
+    <section class="tools-listing-section">
+      <div class="container">
+
+
+        <div class="tools-grid" id="all-tools-grid">
+
+          <% for( let tool of allTools ) { %>
+          <article class="tool-card" data-category="<%= tool.category %>">
+            <div class="tool-card-top">
+              <div class="tool-icon">
+                <img src="/<%= tool.logo %>" alt="<%= tool.name %> Logo">
+              </div>
+              <div class="tool-header-info">
+                <div class="tool-name-row">
+                  <h2 class="tool-name"><%= tool.name %></h2>
+                </div>
+                <span class="tool-category-badge badge-<%= tool.category.toLowerCase() %>"><%= tool.category %></span>
+              </div>
+            </div>
+            <p class="tool-description"><%= tool.about[0] %></p>
+            <div class="tool-features-pills">
+              <% for( let index = 0; index < 3; index++ ) { %>
+              <span class="feature-pill"><%= tool.tags[index] %></span>
+              <% } %>
+            </div>
+            <div class="tool-card-footer">
+              <a href="/tools/<%= tool.slug %>" class="btn btn-outline">
+                <span>View Details</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <span class="tool-pricing-badge"><%= tool.pricing.pricingType %></span>
+            </div>
+          </article>
+          <% } %>
+
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div class="tools-empty-state" id="tools-empty-state" style="display: none;">
+          <div class="empty-state-icon">🔍</div>
+          <h3>No tools found</h3>
+          <p>No tools matched this category yet.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>

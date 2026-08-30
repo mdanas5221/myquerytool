@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+  <%- include('./partials/nav.ejs') %>
+
+  <!-- Tool Detail Single Page View Container -->
+  <div class="tool-detail-page" id="tool-detail-wrapper">
+    <div class="container tool-detail-container">
+
+      <!-- Main Detail Card -->
+      <article class="tool-detail-card" id="tool-main-card">
+
+        <!-- Header Section: Logo, Name, Badges & Action CTA -->
+        <header class="detail-card-header" id="detail-header">
+          <div class="detail-header-left">
+
+            <!-- Logo Box -->
+            <div class="detail-logo-box" id="detail-logo-container">
+              <img src="/<%= tool.logo %>" alt="<%= tool.name %> logo" class="detail-logo-img">
+            </div>
+
+            <!-- Metadata: Title, Badges & Specs -->
+            <div class="detail-header-meta">
+              <div class="detail-title-row">
+                <h1 class="detail-tool-name"><%= tool.name %></h1>
+                <div class="detail-badges-wrap">
+                  <span class="detail-badge detail-badge-category"><%= tool.category %></span>
+                  <span class="detail-badge detail-badge-pricing"><%= tool.pricing.pricingType %></span>
+                </div>
+              </div>
+
+              <!-- Clean Specs Row -->
+              <div class="detail-quick-specs">
+                <div class="spec-item spec-signup">
+                  <span class="spec-label">Signup:</span>
+                  <span class="spec-val"><%= tool.signupRequired ? 'Required' : 'Not Required' %></span>
+                </div>
+
+                <span class="spec-dot" aria-hidden="true">•</span>
+
+                <div class="spec-item spec-ads">
+                  <span class="spec-label">Ads:</span>
+                  <span class="spec-val"><%= tool.ads ? 'Yes' : 'No' %></span>
+                </div>
+
+                <span class="spec-dot" aria-hidden="true">•</span>
+
+                <div class="spec-item spec-verified">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span class="spec-val">Verified &amp; Tested</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="detail-header-actions" id="detail-cta-actions">
+            <a href="<%= tool.website %>" target="_blank" rel="noopener noreferrer" class="btn btn-primary detail-visit-btn" id="btn-visit-tool">
+              <span>Visit Website</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+            <a href="<%= tool.pricing.pricingUrl %>" target="_blank" rel="noopener noreferrer" class="btn btn-outline detail-pricing-btn" id="btn-view-pricing">
+              <span>Pricing Plans</span>
+            </a>
+          </div>
+        </header>
+
+        <hr class="detail-divider">
+
+        <!-- Tags Section -->
+        <section class="detail-section detail-tags-section" id="detail-tags">
+          <h2 class="detail-section-title">Tags & Capabilities</h2>
+          <div class="detail-tags-list">
+            <% for( let tag of tool.tags ) { %>
+            <span class="detail-tag-pill"><%= tag %></span>
+            <% } %>
+          </div>
+        </section>
+
+        <!-- About / Overview Section -->
+        <section class="detail-section detail-about-section" id="detail-about">
+          <h2 class="detail-section-title">About <%= tool.name %></h2>
+          <div class="detail-about-content">
+            <p class="about-paragraph">
+              <%= tool.about[0] %>
+            </p>
+            <p class="about-paragraph">
+              <%= tool.about[1] %>
+            </p>
+          </div>
+        </section>
+
+        <!-- Community Ratings & Reviews Block -->
+        <section class="detail-section detail-ratings-section" id="detail-ratings">
+          <h2 class="detail-section-title">Community Ratings</h2>
+          <div class="ratings-grid">
+
+            <!-- Rating Card -->
+            <% for( let rating of tool.communityRatings ) { %>
+            <div class="rating-item-card">
+              <div class="rating-card-header">
+                <span class="platform-name"><%= rating.platform %></span>
+                <span class="rating-score"><%= rating.rating %> <span class="rating-scale">/ <%= rating.scale %></span></span>
+              </div>
+              <div class="rating-meta-row">
+                <span class="review-count"><%= formatNumber(rating.reviewCount) %> Reviews</span>
+                <a href="<%= rating.sourceUrl %>" target="_blank" rel="noopener noreferrer" class="source-link">View Store</a>
+              </div>
+            </div>
+            <% } %>
+
+          </div>
+        </section>
+
+        <!-- Pros and Cons Grid -->
+        <section class="detail-section detail-pros-cons-section" id="detail-pros-cons">
+          <div class="pros-cons-grid">
+
+            <!-- Pros Column -->
+            <div class="pros-column" id="detail-pros-col">
+              <div class="column-header pros-header">
+                <span class="column-header-icon pros-icon">✓</span>
+                <h2 class="column-title">Pros & Highlights</h2>
+              </div>
+              <ul class="pros-cons-list">
+                <% for( let data of tool.pros ) { %>
+                <li class="pros-cons-item">
+                  <span class="item-bullet pros-bullet">✓</span>
+                  <div class="item-text-group">
+                    <strong class="item-title"><%= data.title %></strong>
+                    <span class="item-desc"><%= data.description %></span>
+                  </div>
+                </li>
+                <% } %>
+              </ul>
+            </div>
+
+            <!-- Cons Column -->
+            <div class="cons-column" id="detail-cons-col">
+              <div class="column-header cons-header">
+                <span class="column-header-icon cons-icon">✕</span>
+                <h2 class="column-title">Limitations & Cons</h2>
+              </div>
+              <ul class="pros-cons-list">
+                <% for( let data of tool.cons ) { %>
+                <li class="pros-cons-item">
+                  <span class="item-bullet cons-bullet">✕</span>
+                  <div class="item-text-group">
+                    <strong class="item-title"><%= data.title %></strong>
+                    <span class="item-desc"><%= data.description %></span>
+                  </div>
+                </li>
+                <% } %>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Testing & Verification Audit Section -->
+        <footer class="detail-card-footer detail-testing-section" id="detail-testing">
+          <div class="testing-badge-wrap">
+            <span class="testing-badge-icon">🛡️</span>
+            <div class="testing-text-group">
+              <div class="testing-heading-row">
+                <span class="testing-label">Last Tested & Audited:</span>
+                <time datetime="<%= new Date(tool.testing.lastTested).toLocaleDateString("en-US")  %>" class="testing-date"><%= 
+                new Date(tool.testing.lastTested).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric"
+                }) 
+                %></time>
+              </div>
+              <p class="testing-notes">
+                <%= tool.testing.notes %>
+              </p>
+            </div>
+          </div>
+        </footer>
+
+      </article>
+
+    </div>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+  <%- include('./partials/nav.ejs') %>
+
+  <main>
+    <!-- ==============================================
+         2. HERO SECTION
+         ============================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+
+          <!-- Premium Hero Pill Badge -->
+          <div class="hero-badge" id="hero-announcement-badge">
+            <span class="badge-sparkle" aria-hidden="true">✨</span>
+            <span class="badge-text">Discover & Compare AI Tools</span>
+          </div>
+
+          <h1 class="hero-title" id="hero-heading">
+            Solve your query, <br><span class="hero-title-accent">Find your tool</span>
+          </h1>
+
+          <p class="hero-description" id="hero-subtext">
+            myquerytool is your curated discovery platform to explore, evaluate, and choose modern artificial intelligence tools for coding, writing, design, and productivity.
+          </p>
+
+          <!-- Search UI -->
+          <div class="search-box-wrapper" id="hero-search-wrapper">
+            <form action="/search" method="GET" class="search-box" id="hero-search-form" role="search">
+              <div class="search-input-field">
+                <span class="search-icon-visual" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <input type="search" name="q" class="search-input" id="search-input" placeholder="Search by tool name, or category..." aria-label="Search AI tools" autocomplete="off">
+              </div>
+              <div class="search-actions-group">
+                <button type="submit" class="btn btn-primary search-btn" id="hero-search-btn">
+                  <span>Search</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         3. FEATURED TOOLS
+         ============================================== -->
+    <section class="section featured-section" id="featured-tools">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-text">
+            <div class="section-eyebrow">Handpicked Directory</div>
+            <h2 class="section-title" id="featured-heading">Featured AI Tools</h2>
+            <p class="section-subtitle" id="featured-subtext">
+              Top-rated and widely adopted AI tools designed for creators, developers, and knowledge workers.
+            </p>
+          </div>
+        </div>
+
+        <div class="tools-grid" id="featured-tools-grid">
+
+          <% for( let tool of allTools ) { %>
+          <article class="tool-card" data-category="<%= tool.category %>">
+            <div class="tool-card-top">
+              <div class="tool-icon">
+                <img src="/<%= tool.logo %>" alt="<%= tool.name %> Logo">
+              </div>
+              <div class="tool-header-info">
+                <div class="tool-name-row">
+                  <h2 class="tool-name"><%= tool.name %></h2>
+                </div>
+                <span class="tool-category-badge badge-<%= tool.category.toLowerCase() %>"><%= tool.category %></span>
+              </div>
+            </div>
+            <p class="tool-description"><%= tool.about[0] %></p>
+            <div class="tool-features-pills">
+              <% for( let index = 0; index < 3; index++ ) { %>
+              <span class="feature-pill"><%= tool.tags[index] %></span>
+              <% } %>
+            </div>
+            <div class="tool-card-footer">
+              <a href="/tools/<%= tool.slug %>" class="btn btn-outline">
+                <span>View Details</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <span class="tool-pricing-badge"><%= tool.pricing.pricingType %></span>
+            </div>
+          </article>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         4. WHY MYQUERYTOOL
+         ============================================== -->
+    <section class="section why-section" id="why-us">
+      <div class="container">
+        <div class="section-header center-header">
+          <div class="section-eyebrow">Platform Highlights</div>
+          <h2 class="section-title" id="why-heading">Why myquery<span class="brand-accent">tool</span></h2>
+          <p class="section-subtitle" id="why-subtext">
+            Built to provide a direct, reliable, and noise-free way to explore artificial intelligence tools.
+          </p>
+        </div>
+
+        <div class="why-grid" id="why-features-grid">
+
+          <!-- Feature 1 -->
+          <div class="why-card" id="why-card-discover">
+            <div class="why-card-header">
+              <div class="why-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                </svg>
+              </div>
+              <span class="why-number">01</span>
+            </div>
+            <h3 class="why-card-title">Discover Useful AI Tools</h3>
+            <p class="why-card-text">
+              Find top-tier artificial intelligence software designed for real work and practical everyday utility.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="why-card" id="why-card-compare">
+            <div class="why-card-header">
+              <div class="why-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <span class="why-number">02</span>
+            </div>
+            <h3 class="why-card-title">Compare Tools Easily</h3>
+            <p class="why-card-text">
+              Quickly assess ratings, pricing models, and key capabilities side by side to pick what fits your budget.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="why-card" id="why-card-save-time">
+            <div class="why-card-header">
+              <div class="why-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <span class="why-number">03</span>
+            </div>
+            <h3 class="why-card-title">Save Time Finding the Right Tool</h3>
+            <p class="why-card-text">
+              Cut through repetitive marketing fluff with clear descriptions, verified categories, and direct summaries.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="why-card" id="why-card-categories">
+            <div class="why-card-header">
+              <div class="why-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </div>
+              <span class="why-number">04</span>
+            </div>
+            <h3 class="why-card-title">Explore Different AI Categories</h3>
+            <p class="why-card-text">
+              Navigate focused domains across coding, writing, image generation, video creation, and audio technology.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         5. FEEDBACK SECTION
+         ============================================== -->
+    <section class="feedback-section" id="feedback">
+      <div class="container feedback-container">
+
+        <!-- 1. Top Section Header -->
+        <div class="feedback-hero-header">
+          <div class="feedback-top-icon" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              <line x1="9" y1="10" x2="9.01" y2="10" stroke-width="3"></line>
+              <line x1="12" y1="10" x2="12.01" y2="10" stroke-width="3"></line>
+              <line x1="15" y1="10" x2="15.01" y2="10" stroke-width="3"></line>
+            </svg>
+          </div>
+          <h1 class="feedback-main-title">We value your feedback</h1>
+          <p class="feedback-subtitle">
+            Your feedback helps us improve MyQueryTool and build a better experience for everyone.
+          </p>
+        </div>
+
+        <!-- 2. Main Feedback Form Card -->
+        <div class="feedback-card" id="feedback-main-card">
+
+          <!-- Card Header -->
+          <div class="feedback-card-header">
+            <div class="feedback-card-icon-badge">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+            </div>
+            <div class="feedback-card-title-group">
+              <h2 class="feedback-card-title">Share your feedback</h2>
+              <p class="feedback-card-desc">Let us know what's working well, what's not, or what we can improve.</p>
+            </div>
+          </div>
+
+          <!-- Feedback Form -->
+          <form action="/feedback" method="POST" class="feedback-form" id="feedback-form">
+
+            <div class="feedback-form-grid">
+
+              <!-- Left Column: Feedback Type Selection -->
+              <div class="feedback-type-column">
+                <label class="feedback-input-label">
+                  What type of feedback is this? <span class="required-star">*</span>
+                </label>
+
+                <div class="feedback-type-grid" role="radiogroup" aria-label="Feedback Type">
+
+                  <!-- 1. Bug / Problem -->
+                  <label class="feedback-radio-card">
+                    <input type="radio" name="feedbackType" value="bug" checked class="feedback-radio-input">
+                    <span class="custom-radio-dot"></span>
+                    <span class="type-text">Bug / Problem</span>
+                  </label>
+
+                  <!-- 2. Missing Tool -->
+                  <label class="feedback-radio-card">
+                    <input type="radio" name="feedbackType" value="missing_tool" class="feedback-radio-input">
+                    <span class="custom-radio-dot"></span>
+                    <span class="type-text">Missing Tool</span>
+                  </label>
+
+                  <!-- 3. Wrong Information -->
+                  <label class="feedback-radio-card">
+                    <input type="radio" name="feedbackType" value="wrong_info" class="feedback-radio-input">
+                    <span class="custom-radio-dot"></span>
+                    <span class="type-text">Wrong Information</span>
+                  </label>
+
+                  <!-- 4. Feature Request -->
+                  <label class="feedback-radio-card">
+                    <input type="radio" name="feedbackType" value="feature_request" class="feedback-radio-input">
+                    <span class="custom-radio-dot"></span>
+                    <span class="type-text">Feature Request</span>
+                  </label>
+
+                  <!-- 5. General Feedback -->
+                  <label class="feedback-radio-card full-width-card">
+                    <input type="radio" name="feedbackType" value="general" class="feedback-radio-input">
+                    <span class="custom-radio-dot"></span>
+                    <span class="type-text">General Feedback</span>
+                  </label>
+
+                </div>
+              </div>
+
+              <!-- Right Column: Textarea & Info Notice -->
+              <div class="feedback-text-column">
+                <label for="feedback-message" class="feedback-input-label">
+                  Your feedback <span class="required-star">*</span>
+                </label>
+
+                <textarea id="feedback-message" name="message" rows="6" class="feedback-textarea" placeholder="Please share your feedback in detail..." required></textarea>
+
+                <!-- Privacy/Importance Alert Callout -->
+                <div class="feedback-info-notice">
+                  <span class="notice-icon">🔒</span>
+                  <div class="notice-text">
+                    <strong class="notice-title">Your feedback is important to us</strong>
+                    <p class="notice-desc">We read every feedback and use it to make MyQueryTool better.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Form Bottom Strip (Thank you message + Submit button) -->
+            <div class="feedback-footer-strip">
+              <div class="feedback-thanks-hint">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <polyline points="9 12 11 14 15 10"></polyline>
+                </svg>
+                <span>Thank you for helping us improve!</span>
+              </div>
+
+              <button type="submit" class="btn feedback-submit-btn" id="btn-submit-feedback">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                <span>Submit Feedback</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- 3. Bottom Banner (Inspirational Card) -->
+        <div class="feedback-bottom-banner">
+          <div class="banner-left">
+            <div class="banner-star-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div class="banner-text-wrap">
+              <h3 class="banner-heading">Your feedback drives improvement</h3>
+              <p class="banner-subheading">Every suggestion, bug report, and idea helps us build a better platform for you.</p>
+            </div>
+          </div>
+
+          <div class="banner-graphic-right" aria-hidden="true">
+            <div class="envelope-art">
+              <span class="envelope-sparkle sp-1">✦</span>
+              <span class="envelope-sparkle sp-2">✦</span>
+              <span class="envelope-sparkle sp-3">✦</span>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="#4f46e5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6" fill="none" stroke="#ffffff" stroke-width="2"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>

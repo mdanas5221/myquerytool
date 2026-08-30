@@ -1,0 +1,127 @@
+/* ==========================================================================
+   PAGE: /tools (Explore All Tools & Filter Spacing)
+   ========================================================================== */
+
+.all-tools-page {
+  background-color: var(--color-light-bg);
+  min-height: calc(100vh - 72px);
+  padding-bottom: 90px;
+}
+
+/* Header & Breadcrumb Spacing */
+.tools-page-header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 36px 0 28px;
+}
+
+/* Heading & Subheading Spacing */
+.tools-header-content {
+  margin-bottom: 26px;
+}
+
+.tools-page-heading {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--color-dark-text);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.tools-page-subheading {
+  font-size: 1.0625rem;
+  color: var(--color-secondary-text);
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+/* Category Badges for Cards */
+.badge-writing {
+  background-color: var(--color-badge-writing-bg);
+  color: var(--color-badge-writing-text);
+  border-color: #e0e7ff;
+}
+.badge-coding {
+  background-color: var(--color-badge-coding-bg);
+  color: var(--color-badge-coding-text);
+  border-color: #d1fae5;
+}
+.badge-image {
+  background-color: var(--color-badge-image-bg);
+  color: var(--color-badge-image-text);
+  border-color: #f3e8ff;
+}
+.badge-video {
+  background-color: var(--color-badge-video-bg);
+  color: var(--color-badge-video-text);
+  border-color: #ffedd5;
+}
+
+/* Tools Section & Grid Spacing */
+.tools-listing-section {
+  padding-top: 44px;
+}
+
+/* Empty State */
+.tools-empty-state {
+  text-align: center;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 60px 24px;
+  max-width: 460px;
+  margin: 30px auto;
+}
+
+.empty-state-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.tools-empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-dark-text);
+  margin-bottom: 6px;
+}
+
+.tools-empty-state p {
+  font-size: 0.9375rem;
+  color: var(--color-secondary-text);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .tools-page-header {
+    padding: 24px 0 20px;
+  }
+
+  .tools-page-heading {
+    font-size: 1.75rem;
+  }
+
+  .tools-page-subheading {
+    font-size: 0.9375rem;
+  }
+
+  .tools-listing-section {
+    padding-top: 28px;
+  }
+
+  .pagination-container {
+    gap: 4px;
+    margin-top: 40px;
+  }
+
+  .page-number {
+    min-width: 34px;
+    height: 34px;
+    font-size: 0.8125rem;
+  }
+
+  .pagination-btn {
+    padding: 7px 12px;
+    font-size: 0.8125rem;
+  }
+}
