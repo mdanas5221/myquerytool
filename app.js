@@ -8,6 +8,10 @@ const port = process.env.PORT || 3000;
 const Tool = require("./models/tool.js");
 const Feedback = require("./models/feedback.js");
 const SearchQuery = require("./models/search_query.js");
+const { GoogleGenAI } = require("@google/genai");
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+});
 
 main()
   .then((res) => {
@@ -28,10 +32,7 @@ async function main() {
   await mongoose.connect(process.env.MONGO_URL);
 }
 
-// --------------------------------
 // FORMAT NUMBER FUNCTION
-// --------------------------------
-
 function formatNumber(num) {
   if (num >= 10000000000) {
     return (num / 10000000000).toFixed(1).replace(".0", "") + "B";
@@ -60,32 +61,139 @@ app.get("/", async (req, res) => {
   }
 });
 
-// SEARCH ROUTE
+// SEARCH QUERY ROUTE
 app.get("/search", async (req, res) => {
   try {
-    let q = req.query.q.trim().toLowerCase();
-    try {
-      await SearchQuery.findOneAndUpdate(
-        { query: q },
-        { $inc: { count: 1 }, $set: { lastSearchedAt: Date.now() } },
-        { upsert: true },
-      );
-    } catch (error) {
-      console.log(error);
-    }
-    let indTool = await Tool.findOne({ name: { $regex: q, $options: "i" } });
-    let categoryTools = await Tool.find({
-      category: { $regex: q, $options: "i" },
+    let pricingFilter = {};
+    let userQuery;
+    let searchByName = false;
+    let q = req.query.q;
+
+    await SearchQuery.findOneAndUpdate(
+      { query: q },
+      { $inc: { count: 1 }, $set: { lastSearchedAt: Date.now() } },
+      { upsert: true },
+    );
+
+    let aiResponse = await ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: `
+      Analyze this user's request for finding an AI tool.
+
+      user request: 
+      ${q}
+
+      Extract the following information:
+      - name 
+      - category
+      - pricing
+      - maximum budget
+      - use case
+      - required features
+
+      Rules:
+      - if user search an individual tool name like "chatgpt", "midjourney" etc. then skip the other information use only name and return it in json format
+      - MOST IMPORTANT = if user search individual tool name something in different ways like the user search "chat gpt" instead of "chtgpt" and "mid journey" instead of "midjourney" than correct it 
+      - category should be "coding", "image", "video", "writing".
+      - pricing should be "free", "paid", "freemium" or "any"
+      - maxPrice should be the maximum price mentioned by the user
+      - if the user does not mention a maximum price , maxPrice should be null
+      - useCase should describe what the user wants to do
+      - features should contain the specific features the user requires
+      - if something is not mentioned, use "any" or an empty array as appropriate
+      
+      Return only JSON.
+      `,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: "object",
+          properties: {
+            name: {
+              type: "string",
+            },
+            category: {
+              type: "string",
+            },
+            pricing: {
+              type: "string",
+            },
+            maxPrice: {
+              type: "number",
+              nullable: true,
+            },
+            useCase: {
+              type: "string",
+            },
+            features: {
+              type: "array",
+              items: {
+                type: "string",
+              },
+            },
+          },
+          required: [
+            "name",
+            "category",
+            "pricing",
+            "maxPrice",
+            "useCase",
+            "features",
+          ],
+        },
+      },
     });
-    if (indTool) {
-      return res.render("view", { tool: indTool });
-    } else if (categoryTools.length > 0) {
-      return res.render("category", { allTools: categoryTools });
-    } else {
+    let response = JSON.parse(aiResponse.text);
+
+    if (response.pricing === "free") {
+      pricingFilter = {
+        "pricing.pricingType": {
+          $in: ["Free", "Freemium"],
+        },
+      };
+    }
+    if (response.pricing === "paid") {
+      pricingFilter = {
+        "pricing.pricingType": {
+          $in: ["Paid", "Freemium"],
+        },
+      };
+    }
+
+    console.log(response);
+
+    userQuery = await Tool.findOne({
+      name: { $regex: `^${response.name}$`, $options: "i" },
+    });
+
+    if (userQuery) {
+      searchByName = true;
+    }
+
+    console.log(searchByName);
+
+    if (!userQuery) {
+      userQuery = await Tool.find({
+        category: { $regex: `^${response.category}$`, $options: "i" },
+        ...pricingFilter,
+      });
+    }
+
+    if (userQuery.length === 0) {
       return res.status(404).render("404");
     }
+
+    if (searchByName) {
+      return res.render("view", { tool: userQuery });
+    }
+
+    return res.render("category", { allTools: userQuery });
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong. Please try again later.",
+    });
   }
 });
 
