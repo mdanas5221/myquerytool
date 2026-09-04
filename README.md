@@ -115,8 +115,8 @@ This information is then used to search the MyQueryTool database and return rele
 
 ## 📁 Project Structure
 
+```text
 MyQueryTool/
-
 ├── models/
 ├── views/
 │   ├── partials/
@@ -135,6 +135,7 @@ MyQueryTool/
 ├── package.json
 └── README.md
 
+```
 ---
 
 ## ⚙️ Getting Started
