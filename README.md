@@ -1,10 +1,10 @@
-# 🔎 MyQueryTool
+# 🔎 myquerytool
 
 > Discover the right AI tool for your needs — faster and smarter.
 
-MyQueryTool is an AI-powered platform that helps users discover and explore useful AI tools for different tasks.
+myquerytool is an AI-powered platform that helps users discover and explore useful AI tools for different tasks.
 
-Instead of searching through hundreds of AI tools manually, users can describe what they are looking for and MyQueryTool helps them find relevant tools.
+Instead of searching through hundreds of AI tools manually, users can describe what they are looking for and myquerytool helps them find relevant tools.
 
 🌐 Live Website: https://myquerytool.vercel.app/
 
@@ -20,11 +20,11 @@ Example:
 
 "I need an AI tool to generate images"
 
-MyQueryTool understands the request and finds relevant AI tools.
+myquerytool understands the request and finds relevant AI tools.
 
 ### 🔎 Smarter Tool Name Search
 
-MyQueryTool can understand common variations in AI tool names.
+myquerytool can understand common variations in AI tool names.
 
 Examples:
 
@@ -66,7 +66,7 @@ Explore detailed information about AI tools, including:
 
 ## 🧠 How It Works
 
-When a user searches for something, MyQueryTool uses AI to understand the search query.
+When a user searches for something, myquerytool uses AI to understand the search query.
 
 The AI extracts useful information such as:
 
@@ -76,7 +76,7 @@ The AI extracts useful information such as:
 - Use Case
 - Features
 
-This information is then used to search the MyQueryTool database and return relevant results.
+This information is then used to search the myquerytool database and return relevant results.
 
 ---
 
@@ -116,7 +116,7 @@ This information is then used to search the MyQueryTool database and return rele
 ## 📁 Project Structure
 
 ```text
-MyQueryTool/
+myquerytool/
 ├── models/
 ├── views/
 │   ├── partials/
@@ -185,17 +185,17 @@ npm run dev
 
 ## 🎯 Project Goal
 
-The goal of MyQueryTool is to make discovering AI tools easier and faster.
+The goal of myquerytool is to make discovering AI tools easier and faster.
 
 Instead of manually searching through multiple websites, users can describe what they need and discover relevant AI tools through a simple search experience.
 
-MyQueryTool aims to make the process of finding, exploring and choosing AI tools faster and easier.
+myquerytool aims to make the process of finding, exploring and choosing AI tools faster and easier.
 
 ---
 
 ## 🚧 Future Plans
 
-MyQueryTool is continuously evolving based on real user feedback.
+myquerytool is continuously evolving based on real user feedback.
 
 Planned features include:
 
@@ -212,7 +212,7 @@ Planned features include:
 
 ## 📈 Project Journey
 
-MyQueryTool started as a simple AI tool discovery project and is gradually evolving through real user feedback.
+myquerytool started as a simple AI tool discovery project and is gradually evolving through real user feedback.
 
 The development philosophy is:
 
@@ -226,7 +226,7 @@ Feedback is always welcome!
 
 If you find a bug, have a feature suggestion, or have an idea that could improve MyQueryTool, feel free to open an issue or reach out.
 
-Your feedback can help shape future versions of MyQueryTool. 🚀
+Your feedback can help shape future versions of myquerytool.
 
 ---
 
@@ -238,4 +238,4 @@ This project is currently developed as an independent learning and product-build
 
 Made with ❤️ while learning, building and shipping.
 
-**MyQueryTool — Discover AI tools smarter.**
+**myquerytool — Discover AI tools smarter.**
